@@ -20,16 +20,8 @@ name = "datafusion-expr"
 description = "Logical plan and expression representation for DataFusion query engine"
 keywords = ["datafusion", "logical", "plan", "expressions"]
 readme = "README.md"
-version = { workspace = true }
-edition = { workspace = true }
-homepage = { workspace = true }
-repository = { workspace = true }
-license = { workspace = true }
-authors = { workspace = true }
-rust-version = { workspace = true }
-
-[lints]
-workspace = true
+version = "43.0.0"
+edition = "2021"
 
 [lib]
 name = "datafusion_expr"
@@ -38,23 +30,32 @@ path = "src/lib.rs"
 [features]
 
 [dependencies]
-ahash = { workspace = true }
-arrow = { workspace = true }
-arrow-array = { workspace = true }
-arrow-buffer = { workspace = true }
-chrono = { workspace = true }
-datafusion-common = { workspace = true }
-datafusion-expr-common = { workspace = true }
-datafusion-functions-aggregate-common = { workspace = true }
-datafusion-functions-window-common = { workspace = true }
-datafusion-physical-expr-common = { workspace = true }
-indexmap = { workspace = true }
+
+
+ahash = { version = "0.8", default-features = false, features = [
+    "runtime-rng",
+] }
+arrow = { version = "53.3.0", features = [
+    "prettyprint",
+] }
+arrow-array = { version = "53.3.0", default-features = false, features = [
+    "chrono-tz",
+] }
+arrow-buffer = { version = "53.3.0", default-features = false }
+chrono = { version = "0.4.38", default-features = false }
+datafusion-common = "43.0.0"
+datafusion-expr-common = "43.0.0"
+datafusion-functions-aggregate-common = "43.0.0"
+datafusion-functions-window-common = "43.0.0"
+datafusion-physical-expr-common = "43.0.0"
+indexmap = "2.0.0"
 paste = "^1.0"
-serde_json = { workspace = true }
-sqlparser = { workspace = true }
+recursive = "0.1.1"
+serde_json = "1"
+sqlparser = { version = "0.51.0", features = ["visitor"] }
 strum = { version = "0.26.1", features = ["derive"] }
 strum_macros = "0.26.0"
 
 [dev-dependencies]
-ctor = { workspace = true }
-env_logger = { workspace = true }
+ctor = "0.2.0"
+env_logger = "0.11"
